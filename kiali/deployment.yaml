@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kiali
+  namespace: kiali-system
+  labels:
+    app: kiali
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kiali
+  template:
+    metadata:
+      labels:
+        app: kiali
+    spec:
+      serviceAccountName: kiali
+      containers:
+        - name: kiali
+          image: quay.io/kiali/kiali:v1.76
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 20001
+              name: http
+          env:
+            - name: AUTH_STRATEGY
+              value: login
+            - name: SERVER_PORT
+              value: "20001"
+            - name: KIALI_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: kiali
+                  key: KIALI_USERNAME
+            - name: KIALI_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: kiali
+                  key: KIALI_PASSWORD
+          volumeMounts:
+            - name: config
+              mountPath: /opt/kiali/config/config.yaml
+              subPath: config.yaml
+      volumes:
+        - name: config
+          configMap:
+            name: kiali
+            items:
+              - key: config.yaml
+                path: config.yaml

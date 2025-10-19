@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kiali
+  namespace: kiali-system
+data:
+  config.yaml: |
+    auth:
+      strategy: login
+    deployment:
+      accessible_namespaces:
+        - "**"
+    external_services:
+      istio:
+        url_service_version: http://istiod.istio-system:15014/version
+      prometheus:
+        url: http://prometheus.istio-system:9090
+      tracing:
+        enabled: false
+      grafana:
+        enabled: false
+    server:
+      metrics_enabled: true

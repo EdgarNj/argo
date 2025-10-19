@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: kiali-virtualservice
+spec:
+  hosts:
+    - kiali.example.com
+  gateways:
+    - zabbix-gateway
+  http:
+    - route:
+        - destination:
+            host: kiali.kiali-system.svc.cluster.local
+            port:
+              number: 20001
