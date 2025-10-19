@@ -20,6 +20,8 @@ spec:
         - name: kiali
           image: quay.io/kiali/kiali:v1.76
           imagePullPolicy: IfNotPresent
+          args:
+            - -config=/opt/kiali/config/config.yaml
           ports:
             - containerPort: 20001
               name: http
@@ -28,8 +30,6 @@ spec:
               value: login
             - name: SERVER_PORT
               value: "20001"
-            - name: CONFIG_FILE
-              value: /opt/kiali/config/config.yaml
             - name: KIALI_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -40,11 +40,11 @@ spec:
                 secretKeyRef:
                   name: kiali
                   key: KIALI_PASSWORD
-            - name: LOGIN_TOKEN_SIGNING_KEY
+            - name: SESSION_SIGNING_KEY
               valueFrom:
                 secretKeyRef:
                   name: kiali
-                  key: LOGIN_TOKEN_SIGNING_KEY
+                  key: SESSION_SIGNING_KEY
           volumeMounts:
             - name: config
               mountPath: /opt/kiali/config/config.yaml
