@@ -13,43 +13,65 @@ rules:
       - services
       - services/status
     verbs: ["get", "list", "watch"]
+
   - apiGroups: ["apps"]
     resources:
       - deployments
       - replicasets
       - statefulsets
+      - daemonsets              # ✅ добавлено
     verbs: ["get", "list", "watch"]
+
   - apiGroups: ["batch"]
     resources:
       - cronjobs
       - jobs
     verbs: ["get", "list", "watch"]
+
   - apiGroups: ["extensions", "networking.k8s.io"]
     resources:
       - ingresses
     verbs: ["get", "list", "watch"]
+
   - apiGroups: ["autoscaling"]
     resources:
       - horizontalpodautoscalers
     verbs: ["get", "list", "watch"]
+
   - apiGroups: ["policy"]
     resources:
       - poddisruptionbudgets
     verbs: ["get", "list", "watch"]
+
   - apiGroups: ["authentication.k8s.io"]
     resources:
       - tokenreviews
     verbs: ["create"]
+
   - apiGroups: ["authorization.k8s.io"]
     resources:
       - subjectaccessreviews
     verbs: ["create"]
+
   - apiGroups: ["networking.istio.io"]
     resources: ["*"]
     verbs: ["get", "list", "watch"]
+
   - apiGroups: ["security.istio.io"]
     resources: ["*"]
     verbs: ["get", "list", "watch"]
+
   - apiGroups: ["config.istio.io"]
     resources: ["*"]
+    verbs: ["get", "list", "watch"]
+
+  # ✅ добавлены недостающие разрешения
+  - apiGroups: ["extensions.istio.io"]
+    resources:
+      - wasmplugins
+    verbs: ["get", "list", "watch"]
+
+  - apiGroups: ["telemetry.istio.io"]
+    resources:
+      - telemetries
     verbs: ["get", "list", "watch"]
