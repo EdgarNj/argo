@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: zabbix-service
+  labels:
+    app: zabbix
+spec:
+  selector:
+    app: zabbix
+  ports:
+    - name: zabbix
+      protocol: TCP
+      port: 10051
+      targetPort: 10051

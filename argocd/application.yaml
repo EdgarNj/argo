@@ -1,17 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx-istio-demo
+  name: zabbix
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/EdgarNj/argo-istio-demo.git
-    targetRevision: HEAD
-    path: app
+    repoURL: https://github.com/your-org/argo.git
+    targetRevision: main
+    path: .
+    directory:
+      recurse: true
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: monitoring
   syncPolicy:
     automated:
       prune: true

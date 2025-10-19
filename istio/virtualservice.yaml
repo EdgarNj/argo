@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: zabbix-virtualservice
+spec:
+  hosts:
+    - zabbix.example.com
+  gateways:
+    - zabbix-gateway
+  tcp:
+    - match:
+        - port: 10051
+      route:
+        - destination:
+            host: zabbix-service
+            port:
+              number: 10051
