@@ -38,6 +38,11 @@ spec:
                 secretKeyRef:
                   name: kiali
                   key: KIALI_PASSWORD
+            - name: SESSION_SIGNING_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: kiali
+                  key: SESSION_SIGNING_KEY
           volumeMounts:
             - name: config
               mountPath: /opt/kiali/config/config.yaml
