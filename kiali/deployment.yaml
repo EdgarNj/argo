@@ -27,8 +27,6 @@ spec:
             - containerPort: 20001
               name: http
           env:
-            - name: AUTH_STRATEGY
-              value: login
             - name: SERVER_PORT
               value: "20001"
             - name: KIALI_USERNAME
