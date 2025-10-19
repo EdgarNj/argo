@@ -7,11 +7,9 @@ spec:
     - zabbix.example.com
   gateways:
     - zabbix-gateway
-  tcp:
-    - match:
-        - port: 10051
-      route:
+  http:
+    - route:
         - destination:
-            host: zabbix-service
+            host: zabbix-web
             port:
-              number: 10051
+              number: 80

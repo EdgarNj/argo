@@ -13,6 +13,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: zabbix-service
+                name: zabbix-web
                 port:
-                  number: 10051
+                  number: 80

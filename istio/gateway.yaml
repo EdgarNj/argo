@@ -7,8 +7,8 @@ spec:
     istio: ingressgateway
   servers:
     - port:
-        number: 10051
-        name: tcp-zabbix
-        protocol: TCP
+        number: 80
+        name: http-zabbix
+        protocol: HTTP
       hosts:
         - zabbix.example.com
