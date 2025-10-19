@@ -22,6 +22,8 @@ spec:
           env:
             - name: DB_SERVER_HOST
               value: zabbix-postgres
+            - name: DB_SERVER_PORT
+              value: "5432"
             - name: POSTGRES_DB
               valueFrom:
                 secretKeyRef:
