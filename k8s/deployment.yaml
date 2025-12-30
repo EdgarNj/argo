@@ -1,20 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-demo
-  namespace: demo
+  name: argo-node-test
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx-demo
+      app: argo-node-test
   template:
     metadata:
       labels:
-        app: nginx-demo
+        app: argo-node-test
     spec:
       containers:
-        - name: nginx
-          image: nginx:1.25
+        - name: node
+          image: edgarnj/argo-node-test:1.0
           ports:
-            - containerPort: 80
+            - containerPort: 3000
