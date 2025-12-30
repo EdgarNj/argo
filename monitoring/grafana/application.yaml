@@ -12,7 +12,7 @@ spec:
     targetRevision: 7.3.11
     helm:
       values: |
-        adminPassword: kubectl get svc -n monitoring | grep prometheus
+        adminPassword: hakobyan
 
 
         replicas: 4
