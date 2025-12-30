@@ -12,7 +12,10 @@ spec:
     targetRevision: 7.3.11
     helm:
       values: |
-        adminPassword: admin1234
+        adminPassword: admin123
+
+        replicas: 2
+
         service:
           type: ClusterIP
 
