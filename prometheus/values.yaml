@@ -1,18 +1,12 @@
-grafana:
-  enabled: true
-  adminPassword: admin
-
 prometheus:
   prometheusSpec:
     retention: 7d
-    serviceMonitorSelectorNilUsesHelmValues: false
+
+grafana:
+  enabled: true
+  adminPassword: admin
+  service:
+    type: NodePort
 
 alertmanager:
   enabled: true
-
-kubeEtcd:
-  enabled: false
-kubeControllerManager:
-  enabled: false
-kubeScheduler:
-  enabled: false
