@@ -1,12 +1,16 @@
-prometheus:
-  prometheusSpec:
-    retention: 7d
-
 grafana:
   enabled: true
   adminPassword: admin
-  service:
-    type: NodePort
+
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelectorNilUsesHelmValues: false
 
 alertmanager:
+  enabled: true
+
+kubeStateMetrics:
+  enabled: true
+
+nodeExporter:
   enabled: true
